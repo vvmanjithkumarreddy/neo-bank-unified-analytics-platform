@@ -1,5 +1,7 @@
 # Data Dictionary
 
+## Source Datasets
+
 | Dataset               | Description                        | PrimaryKey  |
 | --------------------- | ---------------------------------- | ----------- |
 | branches              | contains bank branches details     | branch_code |
@@ -9,7 +11,7 @@
 | credit_bureau_reports | contins the customer credit report | customer_id |
 | payment_gateway_logs  | contains the payment gateway logs  | txn_id      |
 
-## Dataset Detailed Descriptions
+## Dataset Detailed Descriptions:
 
 ### 1. branches table
 
