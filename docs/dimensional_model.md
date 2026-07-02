@@ -91,3 +91,5 @@ Fact credit_bureau_reports:
 
 who does the report belong to - customer (dim customer)
 when - date (dim date)
+
+we have dim branches and it doesn't connect to facts directly but connects to the dim customers (through home branch key) and dim accounts (through account branch key) in
