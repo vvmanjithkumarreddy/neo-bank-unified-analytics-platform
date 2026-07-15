@@ -1,1 +1,1 @@
-# neo-bank
+# Neo-Bank Unified Analytics Platform
