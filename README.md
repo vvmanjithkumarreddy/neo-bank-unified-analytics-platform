@@ -22,6 +22,68 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 
 ## Architecture Overview
 
-![Architecture diagram 1](architecture/architecture_1.png)
+![Architecture diagram 1](images/architecture_1.png)
 
-![Architecture diagram 2](architecture/architecture_2.png)
+![Architecture diagram 2](images/architecture_2.png)
+
+## Tech Stack
+
+| Component             | Technology                                         |
+| --------------------- | -------------------------------------------------- |
+| Compute/Platform      | Databricks Free edition                            |
+| Governance            | Unity Catalog                                      |
+| Data Sources          | Azure SQL Database, Databricks Volumes             |
+| Data Ingestion        | Apache Spark JDBC Connector, Databricks Autoloader |
+| Orchestration         | Databricks Jobs                                    |
+| Transformation        | Pyspark, Spark SQL                                 |
+| Dimensional Modelling | Snowflake Schema (facts and dimensions)            |
+| Source Control        | Github via Databricks Repos                        |
+| Visualization         | Power BI                                           |
+
+## Data Sources
+
+- Azure SQL Database - accounts, branches, customers, transactions - pulled via spark jdbc connector
+- Databricks Volumes (Flat Files) - credit_bureau_reports, payment_gateway_logs - ingested via Auto Loader for schema evolution and incremental file discovery.
+
+## Layer-by-Layer Design
+
+## Bronze
+
+- In bronze layer we ingest the raw source data as it is without any changes and add the ingestion_timestamp() column for audit purposes.
+- We use table_watermarks meatadata table to keep track of the watermark value for each sql database table and using it we perform the incremental load from source to bronze layer.
+- For flat files we use autoloader to achieve incremental processing through check points.
+
+## Silver
+
+- In silver layer we use watermark value to ingest only new data from bronze layer
+- Have used Delta Merge to achieve idempotency including insert-only merge for append-style sources
+- After successful load into the silver layer watermark value is updated in the table_watermarks metadata table
+
+## Gold
+
+- Dimension tables: Implemented SCD Type1 via MERGE i.e (whenMatchedUpdate/whenNotMatchedInsert), with GENERATED ALWAYS AS IDENTITY surrogate keys
+- insert only merge on natural keys for append only fact sources
+- dim_date: a static, determinstic date dimension generated once, excluded from the sheduled pipeline
+
+## Semantic Layer
+
+- Five business-facing views translating gold tables into KPIs consumable by the dashboard
+
+## Dashboard
+
+- Built directly on the semantic views, so BI logic stays out of the dashboard layer and lives in version controlled SQL.
+
+## Key Engineering Decisions
+
+- Used Identity columns in databricks to generate surrogate keys for dimension tables
+- Used Delta Merge in silve and gold layer to achieve idempotency
+- Used SCD Type1 for updating dimension data
+
+## Repository Structure
+
+## Dashboard
+
+![Executive Dashboard](images/Customer%20Insights.png)
+![Customer Insights](images/Customer%20Insights.png)
+![Branch Insights](images/Branch%20Insights.png)
+![Transaction Channel Insights](images/Transaction%20Channel%20Insights.png)
