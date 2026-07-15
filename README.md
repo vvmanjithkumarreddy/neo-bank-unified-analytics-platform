@@ -22,4 +22,4 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 
 ## Architecture Overview
 
-![Architecture diagram](architecure/architure.png)
+![Architecture diagram](architecture/architecture.png)
