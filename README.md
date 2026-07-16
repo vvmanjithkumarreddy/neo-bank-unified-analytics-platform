@@ -4,29 +4,29 @@ A production-style, end-to-end data engineering pipeline on Databricks, implemen
 
 ## Table of Contents
 
-- Project Overview
-- Architecture Overview
-- Tech Stack
-- Data Sources
-- Layer-by-Layer Design
-- Key Engineering Decisions
-- Repository Structure
-- Dashboard
-- Orchestration
-- Know Issues and Roadmap
-- How to run the project
+1. Project Overview
+2. Architecture Overview
+3. Tech Stack
+4. Data Sources
+5. Layer-by-Layer Design
+6. Key Engineering Decisions
+7. Repository Structure
+8. Dashboard
+9. Orchestration
+10. Know Issues and Roadmap
+11. How to run the project
 
-## Project Overview
+## 1. Project Overview
 
 This project integrates the Neo-Bank data stored in multiple sources, formats i.e customer, account, branch and transaction data flowing in from an operational database, blended with external file-based feeds(credit bureau reports, payment gateway logs) into a unified analytics platform.This provides business users with self service analytics for operational and risk insights.
 
-## Architecture Overview
+## 2. Architecture Overview
 
 ![Architecture diagram 1](images/architecture_1.png)
 
 ![Architecture diagram 2](images/architecture_2.png)
 
-## Tech Stack
+## 3. Tech Stack
 
 | Component             | Technology                                         |
 | --------------------- | -------------------------------------------------- |
@@ -40,12 +40,12 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 | Source Control        | Github via Databricks Repos                        |
 | Visualization         | Power BI                                           |
 
-## Data Sources
+## 4. Data Sources
 
 - Azure SQL Database - accounts, branches, customers, transactions - pulled via spark jdbc connector
 - Databricks Volumes (Flat Files) - credit_bureau_reports, payment_gateway_logs - ingested via Auto Loader for schema evolution and incremental file discovery.
 
-## Layer-by-Layer Design
+## 5. Layer-by-Layer Design
 
 ## Bronze
 
@@ -73,17 +73,17 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 
 - Built directly on the semantic views, so BI logic stays out of the dashboard layer and lives in version controlled SQL.
 
-## Key Engineering Decisions
+## 6. Key Engineering Decisions
 
 - Used Identity columns in databricks to generate surrogate keys for dimension tables
 - Used Delta Merge in silve and gold layer to achieve idempotency
 - Used SCD Type1 for updating dimension data
 
-## Repository Structure
+## 7. Repository Structure
 
-## Dashboard
+## 8. Dashboard
 
-![Executive Dashboard](images/Customer%20Insights.png)
+![Executive Dashboard](images/Executive%20Dashboard.png)
 ![Customer Insights](images/Customer%20Insights.png)
 ![Branch Insights](images/Branch%20Insights.png)
 ![Transaction Channel Insights](images/Transaction%20Channel%20Insights.png)
