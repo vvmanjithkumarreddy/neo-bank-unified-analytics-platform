@@ -38,7 +38,7 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 | Transformation        | Pyspark, Spark SQL                                 |
 | Dimensional Modelling | Snowflake Schema (facts and dimensions)            |
 | Source Control        | Github via Databricks Repos                        |
-| Visualization         | Power BI                                           |
+| Visualization         | Databricks Dashboards                              |
 
 ## 4. Data Sources
 
@@ -87,3 +87,5 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 ![Customer Insights](images/Customer%20Insights.png)
 ![Branch Insights](images/Branch%20Insights.png)
 ![Transaction Channel Insights](images/Transaction%20Channel%20Insights.png)
+
+## 9. Orchestration
