@@ -78,10 +78,13 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 - Used Identity columns in databricks to generate surrogate keys for dimension tables
 - Used Delta Merge in silve and gold layer to achieve idempotency
 - Used SCD Type1 for updating dimension data
+- Used Databricks Secret Scope to store the azure sql database connection credentials
 
 ## 7. Repository Structure
 
 ## 8. Dashboard
+
+The dashboard is built on top of business facing views instead of raw or transaction tables reflecting the industry best practice.
 
 ![Executive Dashboard](images/Executive%20Dashboard.png)
 ![Customer Insights](images/Customer%20Insights.png)
@@ -89,3 +92,23 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 ![Transaction Channel Insights](images/Transaction%20Channel%20Insights.png)
 
 ## 9. Orchestration
+
+![Neo Bank Master pipeline](images/Neo%20bank%20master%20pipeline.png)
+
+## Known Issues and Roadmap
+
+- Implemented SCD Type1 for dimension tables and will updated it to SCD Type2 in future.
+- right now the project doesnt store the pipeline runs metadata so in the future update the project this metadata as well.
+
+## How to run the project
+
+1. create the azure sql source using sql_server files in source_files folder
+2. Run the setup notebooks for catalog and schema setup, metadata tables setup and secret scope setup
+3. Deploy the pipeline as Databricks Asset Bundle
+4. Run the one time gold DDL Notebook, date dimension Notebook
+5. Start the pipeline
+
+## Notes:
+
+i have taken below github repo as reference and built the project end to end from scratch on my own.
+https://github.com/databeli/databricks_course/tree/main/13_Banking_Project
