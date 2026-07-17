@@ -98,8 +98,8 @@ The dashboard is built on top of business facing views instead of raw or transac
 ## Known Issues and Roadmap
 
 - Implemented SCD Type1 for dimension tables and will updated it to SCD Type2 in future.
-- right now the project doesnt store the pipeline runs metadata so in the future update the project this metadata as well.
-
+- Currently, the project does not capture pipeline run metadata. This functionality is planned for a future enhancement.
+  
 ## How to run the project
 
 1. create the azure sql source using sql_server files in source_files folder
