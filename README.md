@@ -82,6 +82,59 @@ This project integrates the Neo-Bank data stored in multiple sources, formats i.
 
 ## 7. Repository Structure
 
+```
+.
+├── docs
+│   ├── data_dictionary.md
+│   └── dimensional_model.md
+├── images
+│   ├── architecture_1.png
+│   ├── architecture_2.png
+│   ├── Branch Insights.png
+│   ├── Customer Insights.png
+│   ├── Executive Dashboard.png
+│   ├── Neo bank master pipeline.png
+│   └── Transaction Channel Insights.png
+├── Notebooks
+│   ├── 01-common
+│   │   └── 00_Create_Gold_DDL.ipynb
+│   ├── 02-setup
+│   │   ├── 01.Catalog and Schema Setup.ipynb
+│   │   ├── 02.Setup_Metadata.ipynb
+│   │   └── 03.Setup Secret Scope.ipynb
+│   ├── 03-bronze
+│   │   └── Data Ingestion into Bronze Layer.ipynb
+│   ├── 04-silver
+│   │   └── Bronze to Silver.ipynb
+│   ├── 05-gold
+│   │   ├── 01.Dimension customers.ipynb
+│   │   ├── 02.Dimension accounts.ipynb
+│   │   ├── 03.Dimension branches.ipynb
+│   │   ├── 04.Dimension Date.ipynb
+│   │   ├── 05.Fact transactions.ipynb
+│   │   ├── 06.Fact credit_bureau_reports.ipynb
+│   │   └── 07.Fact payment_gateway_logs.ipynb
+│   ├── 06-analytics
+│   │   ├── 01.branch performance view.ipynb
+│   │   ├── 02.customer_360 view.ipynb
+│   │   ├── 03.daily bank KPI view.ipynb
+│   │   ├── 04.risk customer summary view.ipynb
+│   │   └── 05.transaction channel summary view.ipynb
+│   └── 08-dashboards
+│       └── Neo Bank Final Dashboard.lvdash.json
+├── README.md
+└── source_files
+    ├── blob
+    │   ├── credit_bureau_reports_1.csv
+    │   ├── credit_bureau_reports_2_incremental.csv
+    │   ├── payment_gateway_logs_1.csv
+    │   └── payment_gateway_logs_2_incremental.csv
+    └── sql_server
+        ├── 01_Create_Tables.sql
+        ├── 02_Insert_Historical_data.sql
+        └── 03_Incrementat_data.sql
+```
+
 ## 8. Dashboard
 
 The dashboard is built on top of business facing views instead of raw or transaction tables reflecting the industry best practice.
